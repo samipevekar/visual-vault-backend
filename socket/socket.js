@@ -6,14 +6,12 @@ const app = express();
 const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: ["https://visual-vault-app.vercel.app", "http://localhost:5173","*","https://visual-vault.onrender.com"],
+    origin: ["https://visual-vault-app.vercel.app", "http://localhost:5173", "*", "https://visual-vault.onrender.com"],
     methods: ["GET", "POST"],
     credentials: true
   },
-  transports: ['websocket','polling'],
-  path:'/socket',
-  
-  
+  transports: ['websocket', 'polling'],
+  path: '/socket',
 });
 
 const userSocketMap = {}; // Maps userId to socketId
