@@ -8,7 +8,7 @@ const port = process.env.PORT || 4000;
 
 app.use(
   cors({
-    origin: ["https://visual-vault-app.vercel.app", "http://localhost:5173"],
+    origin: ["https://visual-vault-app.vercel.app", "http://localhost:5173","https://visual-vault.onrender.com"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
