@@ -6,7 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: ["https://visual-vault-app.vercel.app", "http://localhost:5173","*"],
+    origin: ["https://visual-vault-app.vercel.app", "http://localhost:5173","*","https://visual-vault.onrender.com"],
     methods: ["GET", "POST"],
     credentials: true
   },
