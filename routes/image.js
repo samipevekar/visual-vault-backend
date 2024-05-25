@@ -26,7 +26,7 @@ app.use("/images", express.static(uploadDirectory));
 
 
 app.post("/upload", fetchuser, upload.single('post'), (req, res) => {
-    res.json({ success: true, image_url: `https://visual-vault-indol.vercel.app/api/image/images/${req.file.filename}` });
+    res.json({ success: true, image_url: `https://visual-vault-backend.onrender.com/api/image/images/${req.file.filename}` });
 });
 
 // Endpoint for saving images in the database
