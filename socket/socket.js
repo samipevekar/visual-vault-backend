@@ -11,7 +11,6 @@ const io = require("socket.io")(server, {
     credentials: true
   },
   transports: ['websocket', 'polling'],
-  path: '/socket',
 });
 
 const userSocketMap = {}; // Maps userId to socketId
