@@ -4,17 +4,16 @@ const fetchuser = require("../middleware/middleware");
 const Images = require("../models/image");
 const multer = require("multer");
 const path = require('path');
-const os = require('os');
-
 
 // Creating image storage
-
-const uploadDirectory = os.tmpdir();
+const uploadDirectory = path.join(__dirname, 'uploads');
 
 const storage = multer.diskStorage({
-    destination: uploadDirectory,
-    filename: (req, file, cb) => {
-        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+    destination: function (req, file, cb) {
+        cb(null, uploadDirectory);
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
     }
 });
 
@@ -22,11 +21,9 @@ const upload = multer({ storage: storage });
 
 
 // Creating Upload endpoint for images
-app.use("/images", express.static(uploadDirectory));
-
-
 app.post("/upload", fetchuser, upload.single('post'), (req, res) => {
-    res.json({ success: true, image_url: `https://visual-vault-backend.onrender.com/api/image/images/${req.file.filename}` });
+    const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+    res.json({ success: true, image_url: imageUrl });
 });
 
 // Endpoint for saving images in the database
