@@ -4,6 +4,7 @@ const middleware = require("../middleware/middleware")
 const Conversation = require("../models/conversationmodel")
 const Message = require("../models/messagemodel")
 const {getReceiverSocketId,io} = require("../socket/socket")
+const User = require("../models/user")
 
 // Endpoint to send messages
 app.post("/send/:id",middleware,async(req,res)=>{
@@ -76,6 +77,33 @@ app.get("/:id", middleware, async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 });
+
+
+// Endpoint to delete messages
+app.delete("/deletemessages/:id", middleware, async (req, res) => {
+    try {
+        const { id: messageId } = req.params;
+        const message = await Message.findById(messageId);
+        
+        if (!message) {
+            return res.status(404).json({ message: "No data found" });
+        }
+
+        await Message.findByIdAndDelete(messageId);
+        
+        // Remove the message reference from the conversation
+        await Conversation.updateOne(
+            { messages: messageId },
+            { $pull: { messages: messageId } }
+        );
+
+        res.json({ message: "Message deleted successfully" });
+    } catch (error) {
+        console.log("Error in deleteMessage controller:", error.message);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
 
 
 
