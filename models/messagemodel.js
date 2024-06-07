@@ -12,7 +12,11 @@ const messageSchema = mongoose.Schema({
     message:{
         type:String,
         required:true
-    }
+    },
+    deletedBy: [{ // Array of user IDs who have deleted this message
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users"
+    }]
 
 },{timestamps:true})
 
