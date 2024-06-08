@@ -77,6 +77,33 @@ app.get("/:id", middleware, async (req, res) => {
 });
 
 
+// Endpoint to get latest message
+app.get("/latestmessage/:id", middleware, async (req, res) => {
+  try {
+    const { id: userToChatId } = req.params;
+    const senderId = req.user.id;
+
+    const conversation = await Conversation.findOne({
+      $and: [
+        { participants: senderId },
+        { participants: userToChatId }
+      ]
+    }).populate({
+      path: "messages",
+      match: { deletedBy: { $ne: senderId } },
+      options: { sort: { createdAt: -1 }, limit: 1 } // Fetch only the latest message
+    });
+
+    if (!conversation) return res.status(200).json({});
+
+    const latestMessage = conversation.messages[0];
+    res.status(200).json(latestMessage);
+  } catch (error) {
+    console.log("Error in getLatestMessage controller:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // Endpoint to delete messages
 app.delete("/deletemessages/:id", middleware, async (req, res) => {
   try {
