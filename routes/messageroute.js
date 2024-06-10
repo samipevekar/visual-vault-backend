@@ -156,6 +156,39 @@ app.delete("/deleteforuser/:id", middleware, async (req, res) => {
   }
 });
 
+// mark as seen api
+app.post("/markseen/:conversationId", middleware, async (req, res) => {
+  try {
+    const { conversationId } = req.params;
+    const userId = req.user.id;
+
+    // Find the conversation
+    const conversation = await Conversation.findById(conversationId);
+    if (!conversation) {
+      return res.status(404).json({ error: "Conversation not found" });
+    }
+
+    // Update the messages to mark them as seen
+    await Message.updateMany(
+      { _id: { $in: conversation.messages }, seenBy: { $ne: userId } },
+      { $push: { seenBy: userId } }
+    );
+
+    // Emit a socket event to notify the other participants
+    const receiverId = conversation.participants.find(participant => participant.toString() !== userId);
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("messagesSeen", { conversationId, userId });
+    }
+
+    res.status(200).json({ message: "Messages marked as seen" });
+  } catch (error) {
+    console.log("Error in markMessagesAsSeen controller:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
 
 module.exports = app;
 

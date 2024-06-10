@@ -1,16 +1,22 @@
 const http = require("http");
 const express = require("express");
 const path = require("path");
+const Message = require("../models/messagemodel");
 const app = express();
 
 const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: ["https://visual-vault-app.vercel.app", "http://localhost:5173", "*", "https://visual-vault.onrender.com"],
+    origin: [
+      "https://visual-vault-app.vercel.app",
+      "http://localhost:5173",
+      "*",
+      "https://visual-vault.onrender.com",
+    ],
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: true,
   },
-  transports: ['websocket', 'polling'],
+  transports: ["websocket", "polling"],
 });
 
 const userSocketMap = {}; // Maps userId to socketId
@@ -23,27 +29,37 @@ const getReceiverSocketId = (receiverId) => {
 io.on("connection", (socket) => {
   console.log("A user connected", socket.id);
 
-  // Extract the userId from the query parameters
   const userId = socket.handshake.query.userId;
   if (userId && userId !== "undefined") {
-    userSocketMap[userId] = socket.id; // Map the userId to the socketId
+    userSocketMap[userId] = socket.id;
     console.log(`User ${userId} mapped to socket ${socket.id}`);
   }
 
-  // Emit the list of online users to all clients
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
   socket.on("disconnect", () => {
     console.log("User disconnected", socket.id);
-
-    // Remove the user from the socket map if they are disconnecting
     if (userId && userSocketMap[userId] === socket.id) {
       delete userSocketMap[userId];
       console.log(`User ${userId} removed from socket map`);
     }
-
-    // Emit the updated list of online users to all clients
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
+  });
+
+  // Listen for messageSeen event
+  socket.on("messageSeen", async ({ messageId, userId }) => {
+    try {
+      const message = await Message.findById(messageId);
+      if (message) {
+        if (!message.seenBy.includes(userId)) {
+          message.seenBy.push(userId);
+          await message.save();
+          io.emit("messageSeen", { messageId, userId });
+        }
+      }
+    } catch (error) {
+      console.error("Error in messageSeen event:", error.message);
+    }
   });
 });
 
