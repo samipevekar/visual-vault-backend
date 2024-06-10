@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const messageSchema = mongoose.Schema({
     senderId:{
@@ -13,14 +13,16 @@ const messageSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    deletedBy: [{ // Array of user IDs who have deleted this message
+    deletedBy: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users"
+    }],
+    seenBy: [{  // Array of user IDs who have seen the message
         type: mongoose.Schema.Types.ObjectId,
         ref: "users"
     }]
+},{timestamps:true});
 
-},{timestamps:true})
+const Message = mongoose.model("Message",messageSchema);
 
-
-const Message = mongoose.model("Message",messageSchema)
-
-module.exports = Message
+module.exports = Message;
