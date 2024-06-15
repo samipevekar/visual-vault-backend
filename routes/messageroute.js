@@ -33,9 +33,10 @@ app.post("/send/:id", middleware, async (req, res) => {
       conversation.messages.push(newMessage._id);
     }
 
+    // This will run in parallel
     await Promise.all([conversation.save(), newMessage.save()]);
 
-    // Emit newMessage event
+    // Socket code here
     const receiverSocketId = getReceiverSocketId(receiverId);
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("newMessage", newMessage);
@@ -47,7 +48,6 @@ app.post("/send/:id", middleware, async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
 
 // Endpoint to get messages
 app.get("/:id", middleware, async (req, res) => {
