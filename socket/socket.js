@@ -54,6 +54,8 @@ io.on("connection", (socket) => {
         if (!message.seenBy.includes(userId)) {
           message.seenBy.push(userId);
           await message.save();
+
+          // Notify all clients about the message being seen
           io.emit("messageSeen", { messageId, userId });
         }
       }
