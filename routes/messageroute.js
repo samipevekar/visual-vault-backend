@@ -37,7 +37,7 @@ app.post("/send/:id", middleware, async (req, res) => {
     await Promise.all([conversation.save(), newMessage.save()]);
 
     // Socket code here
-    const receiverSocketId = getReceiverSocketId(receiverId);
+    const receiverSocketId = await getReceiverSocketId(receiverId);
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("newMessage", newMessage);
     }
