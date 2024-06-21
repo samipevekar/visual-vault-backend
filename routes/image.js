@@ -4,57 +4,69 @@ const fetchuser = require("../middleware/middleware");
 const Images = require("../models/image");
 const multer = require("multer");
 const path = require('path');
-const os = require('os');
+const { v4: uuidv4 } = require('uuid');
+const admin = require('firebase-admin');
+const serviceAccount = require('../firebase/serviceAccountKey.json');
 
-
-// Creating image storage
-
-// const uploadDirectory = os.tmpdir();
-const uploadDirectory = "./upload/images";
-
-const storage = multer.diskStorage({
-    destination: uploadDirectory,
-    filename: (req, file, cb) => {
-        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
-    }
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: 'gs://visual-vault-images.appspot.com',
 });
 
-const upload = multer({ storage: storage });
+const bucket = admin.storage().bucket();
+const upload = multer({ storage: multer.memoryStorage() });
 
-
-// Creating Upload endpoint for images
-app.use("/images", express.static("upload/images"));
-
-
+// Endpoint for image upload
 app.post("/upload", fetchuser, upload.single('post'), (req, res) => {
-    res.json({ success: true, image_url: `https://visual-vault-backend.onrender.com/api/image/images/${req.file.filename}` });
-});
-
+    const blob = bucket.file(uuidv4() + path.extname(req.file.originalname));
+    const blobStream = blob.createWriteStream({
+      metadata: {
+          contentType: req.file.mimetype,
+          // Setting the acl property to public-read
+          acl: [{
+            entity: 'allUsers',
+            role: 'READER'
+          }]
+      },
+    });
+  
+    blobStream.on('error', (err) => {
+      res.status(500).json({ error: err.message });
+    });
+  
+    blobStream.on('finish', async () => {
+      const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+      res.json({ success: true, image_url: publicUrl });
+    });
+  
+    blobStream.end(req.file.buffer);
+  });
+  
 // Endpoint for saving images in the database
 app.post("/addimage", fetchuser, async (req, res) => {
-    try {
-        const image = await Images.find({});
-        let id;
-        if (image.length > 0) {
-            let last_product_array = image.slice(-1);
-            let last_product = last_product_array[0];
-            id = last_product.id + 1;
-        } else {
-            id = 1;
-        }
-
-        const data = new Images({
-            id: id,
-            image: req.body.image,
-            favorite: req.body.favorite,
-            user: req.user.id
-        });
-        const savedData = await data.save();
-        res.json({ success: true, message: "Image Added Successfully", savedData });
-
-    } catch (error) {
-        res.status(500).send("internal server error");
+  try {
+    const image = await Images.find({});
+    let id;
+    if (image.length > 0) {
+      let last_product_array = image.slice(-1);
+      let last_product = last_product_array[0];
+      id = last_product.id + 1;
+    } else {
+      id = 1;
     }
+
+    const data = new Images({
+      id: id,
+      image: req.body.image,
+      favorite: req.body.favorite,
+      user: req.user.id
+    });
+    const savedData = await data.save();
+    res.json({ success: true, message: "Image Added Successfully", savedData });
+
+  } catch (error) {
+    res.status(500).send("internal server error");
+  }
 });
 
 // Endpoint for getting all images

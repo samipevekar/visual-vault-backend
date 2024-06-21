@@ -55,8 +55,11 @@ io.on("connection", (socket) => {
           message.seenBy.push(userId);
           await message.save();
 
-          // Notify all clients about the message being seen
-          io.emit("messageSeen", { messageId, userId });
+          // Notify the sender about the message being seen
+          const senderSocketId = getReceiverSocketId(message.senderId.toString());
+          if (senderSocketId) {
+            io.to(senderSocketId).emit("messageSeen", { messageId, userId });
+          }
         }
       }
     } catch (error) {
