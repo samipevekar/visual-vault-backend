@@ -24,6 +24,8 @@ admin.initializeApp({
     storageBucket: 'gs://visual-vault-images.appspot.com',
   });
 
+  // 
+
 const bucket = admin.storage().bucket();
 const upload = multer({ storage: multer.memoryStorage() });
 
