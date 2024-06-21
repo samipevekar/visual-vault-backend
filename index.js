@@ -8,7 +8,7 @@ const port = process.env.PORT || 4000;
 
 app.use(
   cors({
-    origin: ["https://visual-vault-app.vercel.app", "http://localhost:5173","https://visual-vault.onrender.com"],
+    origin: ["https://visual-vault-app.vercel.app", "http://localhost:5173", "https://visual-vault.onrender.com"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
@@ -29,7 +29,8 @@ app.get("/about", (req, res) => {
 });
 
 app.use("/api/auth", require("./routes/user"));
-app.use("/api/image", require("./routes/image"));
+app.use("/api/image", require("./routes/image")); // Include the image routes
+
 app.use("/api/messages", require("./routes/messageroute"));
 
 server.listen(port, () => {
