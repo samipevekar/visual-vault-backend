@@ -17,6 +17,8 @@ const io = require("socket.io")(server, {
     credentials: true,
   },
   transports: ["websocket", "polling"],
+  pingInterval: 25000, // default is 25000 (25 seconds)
+  pingTimeout: 60000,  
 });
 
 const userSocketMap = {}; // Maps userId to socketId
