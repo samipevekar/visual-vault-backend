@@ -3,6 +3,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const connectMongo = require("./db/db");
 const { app, server } = require("./socket/socket");
+const compression = require('compression');
+
 
 const port = process.env.PORT || 4000;
 
@@ -14,6 +16,7 @@ app.use(
   })
 );
 
+app.use(compression());
 app.use(express.json());
 app.use(cookieParser());
 
