@@ -1,14 +1,13 @@
 {
-    "type": "service_account",
-    "project_id": "visual-vault-images",
-    "private_key_id": "f3a7949e1333f671a185932ba515413097f23cbd",
-    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDVu/YREetSYVP9\na1i5BiJupqK7LvJrgSU3mZ7zYyZnqvvEqWRw695ytzuCdfUqe6MGSgTVbfJXBojK\nS/jIK8ySi3SNYgCa78kFtNMzPO6FTq3+opy+IE97aij0fbDr6iBPs40K55ce+m2E\ny4Dbq34BI6nvoLpWOWgMNCRqJ0YjVHL2McXW7QwkU/+iy2PF3DN5d/fXgbuWgAJ3\nkQ1iZfsbh8s6r7ArSyQJKgECm0zRrCRI/cHqAeNBBjHxBemAA7eboFX7DVGZ11Zv\ntU5we0rKVbDFLt8v58sriqT4TathfxIoG/Jxtc/+V/dldkCW0C7NpTFw+7UY2DAG\nj53JVePBAgMBAAECggEADe43zgoEc/SbBE/sUvbm5J5gyeF39HDQ66xME2H5fVVE\nHp/Jx6Bf+cseilTE23V+fSjy4rRNUMXAwaqs9uL/7OdA+/wQvQh26jPMdjD4/OBR\nb+DKZYv2kj0rmS/eCapTW86AmV7Z1y+MVtTqu6aUSl+4MkGgE4GfWfhGDVMs+51l\ncvv9es6r4Nk3rbWOBCBFFgU55KSkQgYi+cdXRCWmF0KfxM91/WSJ5O1+S9Z+v6pt\nkTUlIpPvYLym4MpH82siNNFp42uFFvnwvgT7VgpyJSpOlYcwqhYPhE47vmLv7GmV\n35ztytO+laJxN006NQLM7U9O/XdRkpSoGEw2COrR6QKBgQDzIzcqkMNmg12pylVJ\nK0kNXcou1Ctv6e2jHDeVQVh0t2owSrh/fIhPufLxPUD7XFRz2SeXd3mONFQC2jRa\nJvsJ6rkv8n4dmHeETSIz2DDKwlc1l92svqkrveWtg8e4u6zuBBZxbm5XhpJXaf66\nre5eIBwj3tHml1dJW+aTjSzpBQKBgQDhCoolZlZQtCosy+Q+4cHLFXUI4OdtWJVP\nJnhr51fi7oQWXxiN6nOkTkr5wYeXernQZws3FGesADLKliKDh3npp++WLSdHwNNb\nWh5GX7pphSKa82+w4e73ga07+vhW9ABzmUpfIsV0AppkkzA7urvhwH1g1IUFYTdi\nP9fMDDkcjQKBgQCAtWKtuMaHzQDXMhHl0vEwDzdJhO2dp+Mxlm1iKJ5v4uxmthdm\n/YCXW+Nci0WMCrt2PD12NDv36IGUpPhTxRDdlhEEbcUPW7fhJIf3k/l4TFqoN0WU\n/bVGP5eHPByNEWSg9y7+SyxETyvG9IhxQEPQNgVPg9Pv0qvVXL353CErFQKBgQDF\nYOIjxWuFY0/udHJfuNCpl8tLmz9AR8bFYj+SnJkYAA04NfYqWu1MuiLGhjiv4sNh\nB0/t4ma/lHj3+NCSvltuVY4tELN4GqcGY7dUEBhG/q+IamWXJcLbsRBJIGl6ko5m\n1ZdGdA/tHW9fMT3H1ZN+gL83E48MVeUmtkpGvJ3G7QKBgCm+4bbJS92SPs8eiECw\nsrFRW6U/CoAbiPyRU7SsYDcGKXVTn1bNP3gELEaqDtkSE+cARAhUrpZhms8kIo7P\n+/tcYNmvTzUw4XjXmC8ccLT1j10MSmSE6gaDIGqMSpWyHu88gS6y3q089TPLiQnP\n/vy83T9T9A6SIMrQqxsLfQ+V\n-----END PRIVATE KEY-----\n",
-    "client_email": "firebase-adminsdk-2nfxq@visual-vault-images.iam.gserviceaccount.com",
-    "client_id": "110840455385014358594",
-    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    "token_uri": "https://oauth2.googleapis.com/token",
-    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2nfxq%40visual-vault-images.iam.gserviceaccount.com",
-    "universe_domain": "googleapis.com"
-  }
-  
+  "type": "service_account",
+  "project_id": "visual-vault-images",
+  "private_key_id": "ca1cd45633644a7de64115e8e9104b0ef23071d3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCT6tMVA8ZwF2zy\nCyGfsQTWpECANqYlSuV3IXLlVzHD4fAT5IB3exlG/MGebzKgE35w7qIWOKrxkNur\nr/YD0U0V0KAyF/6BkZr7R1gg89hWzUJPN3M9ur22f0X5zkkwN+nm4my1Q/XjqE3y\ngyGtdQmxWH5XJvU4mi6Z4x+lKfP2uyAkf4DQMbNlNkzCmb6Ct5I1e3gm+20J2T7E\nS5TOA9FdGrBHE3EqLfgxiK1XblsvzevxKA11hH6BsVqFroziSnMaZnGiA8dQVi7t\nwePpbEljJUc6JQDDWwzzlqCXNfeGGrLhnxJA/59Wy5dfsZgZb+KMoaN2BfMxu2tf\nEv0FIDTxAgMBAAECggEAFWf7ajl5+J4l7Gqt+q/3NPTfnMPL4ZkS14hmBJ33cWim\nLMrPHftuRLaux+CXIVFmOq5ePfxaHiF07kYbF/cB7TFHAwOJQnOxoRcfFY2/IONi\n6uyUZzo6MEn/n3o6Ce9dkJtIribf/oqh1Sx4WDjte9aEWip6Jy8w+qDtjc0iJZzm\nBqMzcdMTXXZ+h7YOFZvBkoU5A2yTCB55u+EMUdwKmRrUtbmONFbldgdEQJhJaCbt\n93Z0mkbzJwMvyIhpqsrifxJbY4eP26tMlZO66usLFvygzVbDm2dMayz3o89rL5/F\n7nTd6eR5cRT5Cx3UI72GrDf9QTq/Sp/mczhzN4b6PQKBgQDJSdM1S5YbrnZ009L+\nQBnsZjQcqLhESXmNMd0PDYkS92tdrHFXuJ1KpqDqmDFSU5VRWl0IRAJRsJj0WNvA\nHxCyVZL72ebQxWucXGAzTMSToKHY8wpm8VGof/vJbxUN5tHoLub7WUSBcnZlJMcA\nNYf85ofjOlr8ItXkSwWgqfDkhwKBgQC8H0xaySTlLM6CXzVw9UnS810JFBr7o2gl\nZMIjUKIjuIU2GoXHHwe+leOtaMA5Xuy5+p/nSymxbc0PsRHB7KAP+3GMUGDkIw5p\nMVO2de6LpIYnVcEUSX8OB12w2i71HE/UpuSiUyOezJPnakyxYdmZJIooyOOpNBz8\nJdn+DmDwxwKBgFv8zvbmKh1QZ3YQb7YdmTs9occPG9apNVFfXkTIzMHMLFbMvad3\nCPral2NeVfvnkq9w+l8SpXSrndrc2OA90iWNkfRiqmbyMbFtTdFj3doRaKV6vGA7\nHDRC+NAfYaHOwFK5THnFW9dEdfLXEdJ4pELhH2yqeHYNfW4tEs9PmnT1AoGAA7Py\nAs92xHQPVI2fNav+WgKkUCtvJIjg4euLzrolluJo7Nm0zGiV9HBq3Nz0+6wcqMSA\nJUNbfLyWjrqDiPepZuciIwrp/VObUwK/jRXhLip84YVUmZugvpvygiqpRfXatGrc\nkT1ltBh+yM1U2SD98X/AoHDj2k7GS0hLdC7ARb0CgYEAmsc/dsHSvGmVEgotxE8X\nwB2eQk4S1oWRwxRUuPSNLwI5vuEi8iqMjIZxczjaP2fkcXNuPMQ2O2bASo9gvWGS\ng8vjQyUTrlsnXvWeWFSlYhrewdhnMLOorASTBxmT4ON26mN+s9ZdTYRrvk5rre0h\nlPYH/H1W+FCdqy1DW402LUo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-2nfxq@visual-vault-images.iam.gserviceaccount.com",
+  "client_id": "110840455385014358594",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2nfxq%40visual-vault-images.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
